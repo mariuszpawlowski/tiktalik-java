@@ -14,8 +14,8 @@ public class TiktalikJavaApplication {
 
         String url = "https://www.tiktalik.com/api/v1/computing/instance";
 
-        String name = "";
-        String password = "";
+        String name = "mario";
+        String password = "1415926535";
         String authString = name + ":" + password;
         String authStringEnc = new BASE64Encoder().encode(authString.getBytes());
         System.out.println("Base64 encoded auth string: " + authStringEnc);
