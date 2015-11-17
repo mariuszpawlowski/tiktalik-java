@@ -1,8 +1,7 @@
 package com.mariuszpawlowski.tiktalik;
 
 
-
-
+import com.sun.jersey.core.impl.provider.entity.StringProvider;
 import sun.misc.BASE64Encoder;
 
 import com.sun.jersey.api.client.Client;
@@ -22,12 +21,11 @@ public class TiktalikJavaApplication {
         System.out.println("Base64 encoded auth string: " + authStringEnc);
         Client restClient = Client.create();
         WebResource webResource = restClient.resource(url);
-        Instance resp = webResource.accept("application/json")
+        ClientResponse resp = webResource.accept("application/json")
                 .header("Authorization", "Basic " + authStringEnc)
-                .type("application/json")
-                .get(Instance.class);
+                .get(ClientResponse.class);
 
-
+        System.out.println(resp.getEntity(String.class));
 
     }
 }
