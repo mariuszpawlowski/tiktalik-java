@@ -25,4 +25,10 @@ public class TiktalikJavaImpl implements TiktalikJava{
         List<Instance> instancesList = restClient.getListOfInstances(url);
         return instancesList;
     }
+
+    public void createNewInstance(String imageUuid, String hostName){
+        String url = "https://www.tiktalik.com/api/v1/computing/instance";
+        RestClient restClient = new RestClient(login, password);
+        restClient.createNewInstance(url, imageUuid, hostName);
+    }
 }
