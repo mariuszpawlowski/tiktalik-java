@@ -7,13 +7,13 @@ import java.util.List;
  * Created by Mariusz.Pawlowski on 2015-11-13.
  */
 public class Instance implements Serializable {
-    private String size;
+    private int size;
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(int size) {
         this.size = size;
     }
 }
