@@ -1,5 +1,7 @@
 package com.mariuszpawlowski.tiktalik;
 
+import com.mariuszpawlowski.tiktalik.entity.Instance;
+
 import java.util.List;
 
 /**
@@ -7,5 +9,5 @@ import java.util.List;
  */
 public interface TiktalikJava {
 
-    List getListOfInstances();
+    List<Instance> getListOfInstances();
 }

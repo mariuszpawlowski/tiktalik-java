@@ -19,11 +19,10 @@ public class TiktalikJavaImpl implements TiktalikJava{
         this.password = password;
     }
 
-    public List getListOfInstances() {
+    public List<Instance> getListOfInstances() {
         String url = "https://www.tiktalik.com/api/v1/computing/instance";
         RestClient restClient = new RestClient(login, password);
-        WebResource webResource = restClient.getClient().resource(url);
-        Instance[] response = webResource.accept(MediaType.APPLICATION_JSON).get(Instance[].class);
-        return null;
+        List<Instance> instancesList = restClient.getListOfInstances(url);
+        return instancesList;
     }
 }
