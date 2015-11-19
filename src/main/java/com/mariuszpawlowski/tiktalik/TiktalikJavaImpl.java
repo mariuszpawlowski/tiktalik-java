@@ -1,11 +1,7 @@
 package com.mariuszpawlowski.tiktalik;
 
-import com.google.gson.Gson;
 import com.mariuszpawlowski.tiktalik.entity.Instance;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import jdk.nashorn.internal.parser.JSONParser;
 
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -26,22 +22,8 @@ public class TiktalikJavaImpl implements TiktalikJava{
     public List getListOfInstances() {
         String url = "https://www.tiktalik.com/api/v1/computing/instance";
         RestClient restClient = new RestClient(login, password);
-
         WebResource webResource = restClient.getClient().resource(url);
-        ClientResponse response = webResource.type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        int status = response.getStatus();
-        if (ClientResponse.Status.OK.getStatusCode() == status) {
-            String restResponse = response.getEntity(String.class);
-            Instance[] restResponse2 = response.getEntity(Instance[].class);
-            Gson gson = new Gson();
-            Instance[] instance =  gson.fromJson(restResponse, Instance[].class);
-
-            System.out.println(response);
-        } else {
-
-        }
-
-
+        Instance[] response = webResource.accept(MediaType.APPLICATION_JSON).get(Instance[].class);
         return null;
     }
 }
