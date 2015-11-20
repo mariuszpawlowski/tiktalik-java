@@ -1,9 +1,7 @@
 package com.mariuszpawlowski.tiktalik;
 
 import com.mariuszpawlowski.tiktalik.entity.Instance;
-import com.sun.jersey.api.client.WebResource;
 
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
@@ -26,9 +24,9 @@ public class TiktalikJavaImpl implements TiktalikJava{
         return instancesList;
     }
 
-    public void createNewInstance(String imageUuid, String hostName){
+    public void createNewInstance(String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize ){
         String url = "https://www.tiktalik.com/api/v1/computing/instance";
         RestClient restClient = new RestClient(login, password);
-        restClient.createNewInstance(url, imageUuid, hostName);
+        restClient.createNewInstance(url, hostName, imageUuid, networkUuid, instanceSize, diskSize);
     }
 }

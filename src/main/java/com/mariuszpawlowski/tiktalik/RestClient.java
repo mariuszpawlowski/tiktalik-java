@@ -8,11 +8,14 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,16 +46,20 @@ public class RestClient {
         return Arrays.asList(response);
     }
 
-    public void createNewInstance(String url, String imageUuid, String hostName) {
+    public void createNewInstance(String url, String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize) {
         WebResource webResource = getClient().resource(url);
-        Form form = new Form();
-        form.param("image_uuid", imageUuid);
-        form.param("size", "2s");
-        form.param("hostname", hostName);
+        List<String> networks = new ArrayList<String>();
+        networks.add(networkUuid);
 
-        Response response = webResource.accept(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+        MultivaluedMap<String, String> map = new MultivaluedMapImpl();
+        map.putSingle("image_uuid", imageUuid);
+        map.putSingle("size", instanceSize);
+        map.putSingle("hostname", hostName);
+        map.putSingle("disk_size_gb", diskSize);
+        map.put("networks[]", networks);
 
-        System.out.println(response.getStatus());
+        ClientResponse response = webResource.type("application/x-www-form-urlencoded")
+                .post(ClientResponse.class, map);
+
     }
 }

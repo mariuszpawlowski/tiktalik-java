@@ -10,6 +10,6 @@ import java.util.List;
 public interface TiktalikJava {
 
     List<Instance> getListOfInstances();
-    void  createNewInstance(String imageUuid, String hostName);
+    void  createNewInstance(String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize);
 
 }
