@@ -57,6 +57,11 @@ public class RestClient {
 
         ClientResponse response = webResource.type("application/x-www-form-urlencoded")
                 .post(ClientResponse.class, map);
+    }
 
+    public void deleteInstance(String url) {
+        WebResource webResource = getClient().resource(url);
+        ClientResponse response = webResource.delete(ClientResponse.class);
+        System.out.println("Delete instance status: " + response.getStatus());
     }
 }
