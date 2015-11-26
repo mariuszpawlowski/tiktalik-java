@@ -71,4 +71,16 @@ public class RestClient {
         ClientResponse response = webResource.delete(ClientResponse.class);
         System.out.println("Delete instance status: " + response.getStatus());
     }
+
+    public void stopInstance(String url) {
+        WebResource webResource = getClient().resource(url);
+        ClientResponse response = webResource.post(ClientResponse.class);
+        System.out.println("Stop instance status: " + response.getStatus());
+    }
+
+    public Instance getInstance(String url) {
+        WebResource webResource = getClient().resource(url);
+        Instance response = webResource.accept(MediaType.APPLICATION_JSON).get(Instance.class);
+        return response;
+    }
 }

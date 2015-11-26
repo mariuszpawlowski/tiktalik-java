@@ -11,7 +11,14 @@ import java.util.List;
 public interface TiktalikJava {
 
     List<Instance> getListOfInstances();
+
     void  createNewInstance(String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize);
+
     void deleteInstance(String vpsUuid);
+
     List<Image> getListOfImages();
+
+    void stopInstance(String vpsUuid);
+
+    Instance getInstance(String vpsUuid);
 }

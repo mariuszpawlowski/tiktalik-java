@@ -32,7 +32,7 @@ public class TiktalikJavaImpl implements TiktalikJava{
     }
 
     public void deleteInstance(String vpsUuid) {
-        String url = "https://www.tiktalik.com/api/v1/computing/instance/"+vpsUuid;
+        String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid;
         RestClient restClient = new RestClient(login, password);
         restClient.deleteInstance(url);
     }
@@ -42,5 +42,18 @@ public class TiktalikJavaImpl implements TiktalikJava{
         RestClient restClient = new RestClient(login, password);
         List<Image> imagesList = restClient.getListOfImages(url);
         return imagesList;
+    }
+
+    public void stopInstance(String vpsUuid) {
+        String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid + "/stop";
+        RestClient restClient = new RestClient(login, password);
+        restClient.stopInstance(url);
+    }
+
+    public Instance getInstance(String vpsUuid) {
+        String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid;
+        RestClient restClient = new RestClient(login, password);
+        Instance instance = restClient.getInstance(url);
+        return instance;
     }
 }

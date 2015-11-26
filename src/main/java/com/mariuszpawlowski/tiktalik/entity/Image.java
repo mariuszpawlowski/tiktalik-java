@@ -99,6 +99,6 @@ public class Image implements Comparable<Image>{
     }
 
     public int compareTo(Image o) {
-        return this.getCreateTime().compareTo(o.getCreateTime());
+        return o.getCreateTime().compareTo(this.getCreateTime());
     }
 }
