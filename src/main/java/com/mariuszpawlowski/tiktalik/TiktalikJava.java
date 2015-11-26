@@ -1,5 +1,6 @@
 package com.mariuszpawlowski.tiktalik;
 
+import com.mariuszpawlowski.tiktalik.entity.Image;
 import com.mariuszpawlowski.tiktalik.entity.Instance;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface TiktalikJava {
     List<Instance> getListOfInstances();
     void  createNewInstance(String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize);
     void deleteInstance(String vpsUuid);
+    List<Image> getListOfImages();
 }

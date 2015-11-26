@@ -1,5 +1,6 @@
 package com.mariuszpawlowski.tiktalik;
 
+import com.mariuszpawlowski.tiktalik.entity.Image;
 import com.mariuszpawlowski.tiktalik.entity.Instance;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public class TiktalikJavaImpl implements TiktalikJava{
         String url = "https://www.tiktalik.com/api/v1/computing/instance/"+vpsUuid;
         RestClient restClient = new RestClient(login, password);
         restClient.deleteInstance(url);
+    }
+
+    public List<Image> getListOfImages() {
+        String url = "https://www.tiktalik.com/api/v1/computing/image";
+        RestClient restClient = new RestClient(login, password);
+        List<Image> imagesList = restClient.getListOfImages(url);
+        return imagesList;
     }
 }

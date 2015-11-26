@@ -1,5 +1,6 @@
 package com.mariuszpawlowski.tiktalik;
 
+import com.mariuszpawlowski.tiktalik.entity.Image;
 import com.mariuszpawlowski.tiktalik.entity.Instance;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
@@ -40,6 +41,12 @@ public class RestClient {
     public List<Instance> getListOfInstances(String url) {
         WebResource webResource = getClient().resource(url);
         Instance[] response = webResource.accept(MediaType.APPLICATION_JSON).get(Instance[].class);
+        return Arrays.asList(response);
+    }
+
+    public List<Image> getListOfImages(String url) {
+        WebResource webResource = getClient().resource(url);
+        Image[] response = webResource.accept(MediaType.APPLICATION_JSON).get(Image[].class);
         return Arrays.asList(response);
     }
 
