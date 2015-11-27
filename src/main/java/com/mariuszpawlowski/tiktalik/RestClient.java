@@ -50,7 +50,7 @@ public class RestClient {
         return Arrays.asList(response);
     }
 
-    public void createNewInstance(String url, String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize) {
+    public ClientResponse createNewInstance(String url, String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize) {
         WebResource webResource = getClient().resource(url);
         List<String> networks = new ArrayList<String>();
         networks.add(networkUuid);
@@ -64,23 +64,32 @@ public class RestClient {
 
         ClientResponse response = webResource.type("application/x-www-form-urlencoded")
                 .post(ClientResponse.class, map);
+
+        return response;
     }
 
-    public void deleteInstance(String url) {
+    public ClientResponse deleteInstance(String url) {
         WebResource webResource = getClient().resource(url);
-        ClientResponse response = webResource.delete(ClientResponse.class);
-        System.out.println("Delete instance status: " + response.getStatus());
+        return webResource.delete(ClientResponse.class);
     }
 
-    public void stopInstance(String url) {
+    public ClientResponse stopInstance(String url) {
         WebResource webResource = getClient().resource(url);
-        ClientResponse response = webResource.post(ClientResponse.class);
-        System.out.println("Stop instance status: " + response.getStatus());
+        return webResource.post(ClientResponse.class);
     }
 
     public Instance getInstance(String url) {
         WebResource webResource = getClient().resource(url);
-        Instance response = webResource.accept(MediaType.APPLICATION_JSON).get(Instance.class);
-        return response;
+        return webResource.accept(MediaType.APPLICATION_JSON).get(Instance.class);
+    }
+
+    public ClientResponse createBackup(String url) {
+        WebResource webResource = getClient().resource(url);
+        return webResource.post(ClientResponse.class);
+    }
+
+    public ClientResponse deleteImage(String url) {
+        WebResource webResource = getClient().resource(url);
+        return webResource.delete(ClientResponse.class);
     }
 }

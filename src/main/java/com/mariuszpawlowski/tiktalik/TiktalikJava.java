@@ -21,4 +21,8 @@ public interface TiktalikJava {
     void stopInstance(String vpsUuid);
 
     Instance getInstance(String vpsUuid);
+
+    void createBackup(String vpsUuid);
+
+    void deleteImage(String image);
 }

@@ -2,6 +2,7 @@ package com.mariuszpawlowski.tiktalik;
 
 import com.mariuszpawlowski.tiktalik.entity.Image;
 import com.mariuszpawlowski.tiktalik.entity.Instance;
+import com.sun.jersey.api.client.ClientResponse;
 
 import java.util.List;
 
@@ -28,13 +29,14 @@ public class TiktalikJavaImpl implements TiktalikJava{
     public void createNewInstance(String hostName, String imageUuid, String networkUuid, String instanceSize, String diskSize ){
         String url = "https://www.tiktalik.com/api/v1/computing/instance";
         RestClient restClient = new RestClient(login, password);
-        restClient.createNewInstance(url, hostName, imageUuid, networkUuid, instanceSize, diskSize);
+        ClientResponse response = restClient.createNewInstance(url, hostName, imageUuid, networkUuid, instanceSize, diskSize);
     }
 
     public void deleteInstance(String vpsUuid) {
         String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid;
         RestClient restClient = new RestClient(login, password);
-        restClient.deleteInstance(url);
+        ClientResponse response = restClient.deleteInstance(url);
+        System.out.println("Delete instance response status: " + response.getStatus());
     }
 
     public List<Image> getListOfImages() {
@@ -47,7 +49,8 @@ public class TiktalikJavaImpl implements TiktalikJava{
     public void stopInstance(String vpsUuid) {
         String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid + "/stop";
         RestClient restClient = new RestClient(login, password);
-        restClient.stopInstance(url);
+        ClientResponse response = restClient.stopInstance(url);
+        System.out.println("Stop instance response status: " + response.getStatus());
     }
 
     public Instance getInstance(String vpsUuid) {
@@ -55,5 +58,19 @@ public class TiktalikJavaImpl implements TiktalikJava{
         RestClient restClient = new RestClient(login, password);
         Instance instance = restClient.getInstance(url);
         return instance;
+    }
+
+    public void createBackup(String vpsUuid) {
+        String url = "https://www.tiktalik.com/api/v1/computing/instance/" + vpsUuid + "/backup";
+        RestClient restClient = new RestClient(login, password);
+        ClientResponse response = restClient.createBackup(url);
+        System.out.println("Create backup response status: " + response.getStatus());
+    }
+
+    public void deleteImage(String imageUuid) {
+        String url = "https://www.tiktalik.com/api/v1/computing/image/" + imageUuid;
+        RestClient restClient = new RestClient(login, password);
+        ClientResponse response = restClient.deleteImage(url);
+        System.out.println("Delete image response status: " + response.getStatus());
     }
 }

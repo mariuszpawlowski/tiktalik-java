@@ -41,6 +41,9 @@ public class Instance implements Serializable {
     @JsonProperty("vpsimage_uuid")
     private String vpsimageUuid;
 
+    @JsonProperty("actions_pending_count")
+    private String actionsPendingCount;
+
     public Integer getSize() {
         return size;
     }
@@ -119,6 +122,14 @@ public class Instance implements Serializable {
 
     public void setVpsimageUuid(String vpsimageUuid) {
         this.vpsimageUuid = vpsimageUuid;
+    }
+
+    public String getActionsPendingCount() {
+        return actionsPendingCount;
+    }
+
+    public void setActionsPendingCount(String actionsPendingCount) {
+        this.actionsPendingCount = actionsPendingCount;
     }
 }
 
