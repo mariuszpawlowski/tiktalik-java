@@ -2,6 +2,8 @@ package com.mariuszpawlowski.tiktalik.entity;
 
 import com.owlike.genson.annotation.JsonProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class Image implements Comparable<Image>{
     private String description;
 
     @JsonProperty("create_time")
-    private Date createTime;
+    private String createTime;
 
     @JsonProperty("download_formats")
     private List<String> downloadFormats;
@@ -82,11 +84,11 @@ public class Image implements Comparable<Image>{
         this.description = description;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
@@ -99,6 +101,17 @@ public class Image implements Comparable<Image>{
     }
 
     public int compareTo(Image o) {
-        return o.getCreateTime().compareTo(this.getCreateTime());
+        String date1String = o.getCreateTime().substring(0,19);
+        String date2String = this.getCreateTime().substring(0,19);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = formatter.parse(date1String);
+            date2 = formatter.parse(date2String);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date1.compareTo(date2);
     }
 }
