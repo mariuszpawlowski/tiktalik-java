@@ -1,4 +1,4 @@
-package com.mariuszpawlowski.tiktalik;
+package pl.mariuszpawlowski.tiktalik;
 
 public class TiktalikJavaApplicationTests {
 

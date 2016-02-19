@@ -1,5 +1,6 @@
-package com.mariuszpawlowski.tiktalik.entity;
+package pl.mariuszpawlowski.tiktalik.entity;
 
+import com.mariuszpawlowski.tiktalik.entity.*;
 import com.owlike.genson.annotation.JsonProperty;
 
 import java.io.Serializable;

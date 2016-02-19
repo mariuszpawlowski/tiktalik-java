@@ -1,7 +1,7 @@
-package com.mariuszpawlowski.tiktalik;
+package pl.mariuszpawlowski.tiktalik;
 
-import com.mariuszpawlowski.tiktalik.entity.Image;
-import com.mariuszpawlowski.tiktalik.entity.Instance;
+import pl.mariuszpawlowski.tiktalik.entity.Image;
+import pl.mariuszpawlowski.tiktalik.entity.Instance;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
