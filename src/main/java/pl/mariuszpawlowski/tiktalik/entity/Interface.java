@@ -1,6 +1,6 @@
 package pl.mariuszpawlowski.tiktalik.entity;
 
-import com.mariuszpawlowski.tiktalik.entity.*;
+import pl.mariuszpawlowski.tiktalik.entity.*;
 import com.owlike.genson.annotation.JsonProperty;
 
 /**
